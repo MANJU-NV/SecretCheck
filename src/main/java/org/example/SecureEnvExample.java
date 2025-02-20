@@ -5,12 +5,18 @@ import io.github.cdimascio.dotenv.Dotenv;
 public class SecureEnvExample {
     public static void main(String[] args) {
         // Load environment variables from .env file
-        Dotenv dotenv = Dotenv.load();
+        String dbUser = System.getenv("DB_USERNAME");
+        String dbPassword = System.getenv("DB_PASSWORD");
+        String jwtSecret = System.getenv("JWT_SECRET");
 
-        // Get the password
-        String dbPassword = dotenv.get("DB_PASSWORD");
+        // Ensure secrets are not null
+        if (dbUser == null || dbPassword == null || jwtSecret == null) {
+            System.err.println("ERROR: Missing environment variables!");
+            return;
+        }
 
-        System.out.println("Database Password: " + (dbPassword != null ? "Loaded successfully" : "Not set!"));
-    }
+        // Use the secrets (Do NOT print sensitive info in production!)
+        System.out.println("Database User: " + dbUser);
+        System.out.println("JWT Secret Loaded Successfully");    }
 }
 
