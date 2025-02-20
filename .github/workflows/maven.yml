@@ -31,10 +31,11 @@ jobs:
           key: maven-${{ runner.os }}-${{ hashFiles('**/pom.xml') }}
           restore-keys: maven-${{ runner.os }}-
           
-      - name: Get env Data
+      - name: Set Environment Variables from GitHub Secrets
         run: |
-          export $(grep -v '^#' .env | xargs)
-          echo "DB_PASSWORD: $DB_PASSWORD"
+          echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> $GITHUB_ENV
+          echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> $GITHUB_ENV
+          echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> $GITHUB_ENV
 
       - name: Run Selenium Tests (Google Play Console)
         run: mvn exec:java -Dexec.mainClass="org.example.SecureEnvExample"
