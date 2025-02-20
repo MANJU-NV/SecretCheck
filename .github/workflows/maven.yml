@@ -38,7 +38,9 @@ jobs:
           echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> $GITHUB_ENV
 
       - name: Run Selenium Tests (Google Play Console)
-        run: mvn exec:java -Dexec.mainClass="org.example.SecureEnvExample"
+        run: |
+          sh shell.sh
+          mvn exec:java -Dexec.mainClass="org.example.SecureEnvExample"
 #        env:
          # EMAIL: ${{ secrets.GOOGLE_EMAIL }}
 #          DB_PASSWORD: "Test@123"
