@@ -37,7 +37,7 @@ jobs:
           echo "DB_PASSWORD: $DB_PASSWORD"
 
       - name: Run Selenium Tests (Google Play Console)
-        run: mvn exec:java -Dexec.mainClass="org.example.EnvVariablesExample"
+        run: mvn exec:java -Dexec.mainClass="org.example.SecureEnvExample"
 #        env:
          # EMAIL: ${{ secrets.GOOGLE_EMAIL }}
 #          DB_PASSWORD: "Test@123"
