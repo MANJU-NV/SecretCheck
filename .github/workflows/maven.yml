@@ -39,7 +39,7 @@ jobs:
 
       - name: Run Selenium Tests (Google Play Console)
         run: |
-          sh shell.sh
+          
           mvn exec:java -Dexec.mainClass="org.example.SecureEnvExample"
 #        env:
          # EMAIL: ${{ secrets.GOOGLE_EMAIL }}
